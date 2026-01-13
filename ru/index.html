@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Tracker - Дневник головной боли</title>
+    <meta name="description" content="Headache Tracker — простой трекер головной боли с поддержкой Apple Watch, наглядными графиками и экспортом в Excel.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 50px 16px 30px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 550px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+        }
+        
+        .cta-button:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(0,0,0,0.35);
+        }
+        
+        .features {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 28px 20px;
+            margin: 16px 0;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            color: #2d3748;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 1rem 0.75rem;
+        }
+        
+        .feature-icon {
+            width: 72px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            font-size: 1.6rem;
+            color: white;
+        }
+        
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: #2d3748;
+        }
+        
+        .feature p {
+            font-size: 0.92rem;
+            line-height: 1.35;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 16px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .support-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 22px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-top: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .support-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        
+        .footer p:last-child {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+            
+            .hero {
+                padding: 40px 12px 24px;
+            }
+            
+            .features {
+                margin: 12px 0;
+                padding: 24px 16px;
+            }
+            
+            .features h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .feature {
+                padding: 0.75rem 0.25rem;
+            }
+            
+            .feature-icon {
+                width: 64px;
+                height: 44px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .hero {
+                padding: 30px 16px 20px;
+            }
+            
+            .features {
+                padding: 24px 18px;
+                margin: 12px 0;
+            }
+            
+            .features h2 {
+                margin-bottom: 1rem;
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>Headache Tracker</h1>
+            <p>Простой и точный дневник головной боли.<br>Поддержка Apple Watch, наглядные графики, экспорт в Excel, виджеты.</p>
+            <a href="https://apps.apple.com/app/headache-tracker/id123456789" class="cta-button">
+                📱 Загрузить в App Store
+            </a>
+        </section>
+
+        <section class="features">
+            <h2>Всё для контроля боли</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Подробная аналитика</h3>
+                    <p>Графики за день, месяц. Количество часов боли за период и тенденции.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Быстрый ввод</h3>
+                    <p>Одним касанием сохраняешь уровень боли. Набор удобных виджетов для iPhone и Apple Watch.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">📤</div>
+                    <h3>Экспорт Excel</h3>
+                    <p>Все данные в удобном Excel‑файле для врача или анализа.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">⌚</div>
+                    <h3>Apple Watch</h3>
+                    <p>Синхронизация с часами. Добавляй записи прямо с главного экрана Apple Watch</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer">
+            <h3>Нужна помощь?</h3>
+            <p>Пишите на почту, отвечаем быстро!</p>
+            <a href="mailto:annascooter7@gmail.com?subject=Headache%20Tracker%20Support&body=Привет!%20У%20меня%20вопрос%20по%20приложению..." 
+               class="support-btn">
+                Написать в поддержку
+            </a>
+            <p>© 2026 Headache Tracker. Все права защищены.</p>
+        </section>
+    </div>
+</body>
+</html>
